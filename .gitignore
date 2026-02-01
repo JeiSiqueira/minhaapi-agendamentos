@@ -1,0 +1,64 @@
+# Build
+bin/
+obj/
+
+# VSCode
+.vscode/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# Publish output
+publish/
+
+# NuGet
+*.nupkg
+.nuget/
+
+# EF Core Migrations
+Migrations/
+
+# Database files
+*.db
+*.mdf
+*.ldf
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+appsettings.Secrets.json
+
+# JetBrains Rider
+.idea/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Coverage
+coverage*/
+
+# Dotnet user-specific files
+*.vcxproj.user
+
+# Ignore compiled dlls
+*.dll
+

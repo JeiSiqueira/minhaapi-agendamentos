@@ -1,0 +1,512 @@
+{
+	"info": {
+		"_postman_id": "79f120dc-5131-487b-a973-b0d4819371dc",
+		"name": "minhaapidb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "51839277",
+		"_collection_link": "https://jeisiqueira7-3272669.postman.co/workspace/Jei-Siqueira's-Workspace~bb7cc1c9-85c8-4f25-80f7-2d6043910078/collection/51839277-79f120dc-5131-487b-a973-b0d4819371dc?action=share&source=collection_link&creator=51839277"
+	},
+	"item": [
+		{
+			"name": "Profissionais",
+			"item": [
+				{
+					"name": "Obter profissionais",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/profissionais",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"profissionais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter profissional ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/profissionais/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"profissionais",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar profissional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Charles\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/profissionais",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"profissionais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar profissional",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"nome\": \"Rosemeire\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/profissionais",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"profissionais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar profissional",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/profissionais/5",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"profissionais",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Servicos",
+			"item": [
+				{
+					"name": "Obter servicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/servicos",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"servicos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter servico ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/servicos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"servicos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar servico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Maquiagem\",\r\n    \"preco\": 160.00,\r\n    \"duracaoMinutos\": 120\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/servicos",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"servicos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar servico",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 6,\r\n    \"nome\": \"Maquiagem\",\r\n    \"preco\": 160.00,\r\n    \"duracaoMinutos\": 60\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/servicos",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"servicos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar servico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/servicos/6",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"servicos",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Criar usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Carlos\",\r\n    \"email\": \"carlosantobio@gmail.com\",\r\n    \"senha\": \"senha123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"8abff53b-ceb5-42dc-abdf-42b272e5f96a\",\r\n    \"nome\": \"Antonio\",\r\n    \"email\": \"carlosantobio@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter usuario ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/usuarios/8abff53b-ceb5-42dc-abdf-42b272e5f96a",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"usuarios",
+								"8abff53b-ceb5-42dc-abdf-42b272e5f96a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter usuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/usuarios/8abff53b-ceb5-42dc-abdf-42b272e5f96a",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"usuarios",
+								"8abff53b-ceb5-42dc-abdf-42b272e5f96a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agendamentos",
+			"item": [
+				{
+					"name": "Obter agendamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/Agendamentos",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"Agendamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar agendamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuarioId\": \"89c2272d-2913-4f3e-a7dc-5ffc9730fe00\",\r\n    \"servicoId\": 2,\r\n    \"profissionalId\": 2,\r\n    \"data\": \"2026-02-01T20:43:21.278Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/Agendamentos",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"Agendamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter agendamento ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/Agendamentos/88eaafd4-75fd-4ded-b87a-65cad0a79201",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"Agendamentos",
+								"88eaafd4-75fd-4ded-b87a-65cad0a79201"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar agendamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"b551681c-1fbb-4206-b6d8-36b6df3533f3\",\r\n    \"usuarioId\": \"89c2272d-2913-4f3e-a7dc-5ffc9730fe00\",\r\n    \"servicoId\": 2,\r\n    \"profissionalId\": 1,\r\n    \"data\": \"2026-02-01T20:43:21.278Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5138/api/Agendamentos",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"Agendamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete agendamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5138/api/Agendamentos/b551681c-1fbb-4206-b6d8-36b6df3533f3",
+							"host": [
+								"localhost"
+							],
+							"port": "5138",
+							"path": [
+								"api",
+								"Agendamentos",
+								"b551681c-1fbb-4206-b6d8-36b6df3533f3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
