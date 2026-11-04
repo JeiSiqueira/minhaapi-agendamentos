@@ -1,135 +1,124 @@
-# MinhaApi
+MinhaApi ‚Äî Agendamentos (Back-end)
 
-API de agendamentos com .NET 8 e MySQL.
+API REST para um sistema de agendamento de sal√£o de beleza, desenvolvida em C# com .NET 8 e MySQL.
 
-Resumo do projeto
-- CRUD b·sico para Usu·rios, ServiÁos, Profissionais e Agendamentos.
-- Soft delete implementado para Usu·rios, ServiÁos e Profissionais (`IsDeleted`).
-- SeparaÁ„o em camadas: Controllers ? Services ? Repositories ? DbContext (AppDbContext).
-- Mapeamento EF Core via `OnModelCreating` para usar nomes de tabelas/colunas em min˙sculas (compatÌvel com o schema MySQL fornecido).
+A API permite gerenciar usu√°rios, servi√ßos, profissionais e agendamentos, com arquitetura em camadas, soft delete e documenta√ß√£o via Swagger.
 
-Como rodar localmente
-1. Configurar vari·veis/connection string
-- Arquivo `appsettings.json` contÈm `DefaultConnection`. Atualize se necess·rio:
+Front-end: minhaapp-agendamentos (React + TypeScript)
 
-```json
+<!-- Adicione aqui uma captura de tela do Swagger: ![Swagger](docs/swagger.png) -->
+Tecnologias
+C#
+.NET 8
+ASP.NET Core Web API
+Entity Framework Core
+MySQL
+Swagger / OpenAPI
+Postman
+Git / GitHub
+Funcionalidades
+CRUD de Usu√°rios, Servi√ßos, Profissionais e Agendamentos
+Soft delete (IsDeleted) para Usu√°rios, Servi√ßos e Profissionais
+Valida√ß√£o das chaves estrangeiras antes de criar um agendamento (usu√°rio, servi√ßo e profissional precisam existir)
+Mapeamento no EF Core (OnModelCreating) com nomes de tabelas e colunas em min√∫sculas, compat√≠vel com o schema MySQL
+Carregamento autom√°tico de vari√°veis de ambiente a partir de um arquivo .env
+Documenta√ß√£o interativa com Swagger (ambiente de desenvolvimento)
+Cole√ß√£o do Postman inclu√≠da no reposit√≥rio
+Arquitetura
+
+O projeto √© organizado em camadas, separando as responsabilidades da aplica√ß√£o:
+
+Controllers ‚Üí Services ‚Üí Repositories ‚Üí DbContext (AppDbContext)
+Controllers: recebem as requisi√ß√µes HTTP e retornam as respostas
+Services: concentram as regras de neg√≥cio e valida√ß√µes
+Repositories: acesso aos dados
+AppDbContext: configura√ß√£o do EF Core e mapeamento com o MySQL
+Endpoints
+Usu√°rios
+M√©todo	Rota	Descri√ß√£o
+GET	/api/usuarios	Lista usu√°rios (n√£o deletados)
+GET	/api/usuarios/{id}	Busca usu√°rio por id
+POST	/api/usuarios	Cria usu√°rio
+PUT	/api/usuarios	Atualiza usu√°rio
+DELETE	/api/usuarios/{id}	Soft delete (IsDeleted = true)
+Servi√ßos
+M√©todo	Rota	Descri√ß√£o
+GET	/api/servicos	Lista servi√ßos (n√£o deletados)
+GET	/api/servicos/{id}	Busca servi√ßo por id
+POST	/api/servicos	Cria servi√ßo
+PUT	/api/servicos	Atualiza servi√ßo
+DELETE	/api/servicos/{id}	Soft delete
+Profissionais
+M√©todo	Rota	Descri√ß√£o
+GET	/api/profissionais	Lista profissionais (n√£o deletados)
+GET	/api/profissionais/{id}	Busca profissional por id
+POST	/api/profissionais	Cria profissional
+PUT	/api/profissionais	Atualiza profissional
+DELETE	/api/profissionais/{id}	Soft delete
+Agendamentos
+M√©todo	Rota	Descri√ß√£o
+GET	/api/Agendamentos	Lista agendamentos
+GET	/api/Agendamentos/{id}	Busca agendamento por id
+POST	/api/Agendamentos	Cria agendamento
+PUT	/api/Agendamentos	Atualiza agendamento
+DELETE	/api/Agendamentos/{id}	Remove agendamento
+Banco de dados
+MySQL com Entity Framework Core
+O script sql/schema_mysql.sql cont√©m o DDL usado para criar o banco
+Usuario.Id √© do tipo Guid (armazenado como binary(16)); Servico.Id e Profissional.Id s√£o int
+Como executar
+Pr√©-requisitos
+.NET 8 SDK
+MySQL
+Git
+Passo a passo
+Clone o reposit√≥rio:
+bash
+git clone https://github.com/JeiSiqueira/minhaapi-agendamentos.git
+cd minhaapi-agendamentos
+Crie o banco de dados executando o script sql/schema_mysql.sql no MySQL.
+Configure a conex√£o com o banco. A forma recomendada √© criar um arquivo .env na raiz do projeto (j√° inclu√≠do no .gitignore):
+env
+DB_HOST=localhost
+DB_NAME=minhaapidb
+DB_USER=root
+DB_PASS=sua_senha
+
+O Program.cs carrega o .env automaticamente, sem sobrescrever vari√°veis de ambiente j√° existentes.
+
+Como alternativa, ajuste a connection string no appsettings.json:
+
+json
 "ConnectionStrings": {
-  "DefaultConnection": "Server=localhost;Database=minhaapidb;User=root;Password=Dev@2025#MySQL;"
+  "DefaultConnection": "Server=localhost;Database=minhaapidb;User=root;Password=sua_senha;"
 }
-```
 
-2. Subir a aplicaÁ„o
-- No terminal do projeto:
+Nunca fa√ßa commit de senhas reais. Use apenas o .env ou vari√°veis de ambiente.
 
-```sh
+Execute a API:
+bash
+dotnet run
+
+No PowerShell, para rodar em ambiente de desenvolvimento:
+
+powershell
 $env:ASPNETCORE_ENVIRONMENT="Development"
 dotnet run
-```
+Documenta√ß√£o e testes
+Swagger: em ambiente de desenvolvimento, acesse https://localhost:{porta}/swagger. A porta aparece na sa√≠da do dotnet run.
+Postman: importe a cole√ß√£o postman/MinhaApi.postman_collection.json e altere a vari√°vel baseUrl, se necess√°rio.
+Fluxo para testar um agendamento
+Crie um usu√°rio, um servi√ßo e um profissional
+Use os IDs retornados para criar o agendamento (a API valida as chaves estrangeiras antes de inserir)
+Melhorias futuras
+Hash de senhas (BCrypt ou Argon2). Atualmente as senhas s√£o armazenadas em texto
+Autentica√ß√£o e autoriza√ß√£o com JWT
+Testes automatizados (xUnit)
+Docker e docker-compose
+EF Core Migrations
+Controle de disponibilidade e conflito de hor√°rios por profissional
+Autora
 
-3. Swagger (UI) para testar
-- Em ambiente de desenvolvimento o Swagger È habilitado.
-- URL (exemplo): `https://localhost:5138/swagger` (a porta pode variar; verifique saÌda do `dotnet run`).
+Jeimili Siqueira Mendes GitHub | LinkedIn
 
-4. Postman
-- ColeÁ„o Postman disponÌvel em `postman/MinhaApi.postman_collection.json` no repositÛrio.
-- Importe a coleÁ„o no Postman e altere a vari·vel `baseUrl` se necess·rio.
-
-Carregar vari·veis de ambiente (.env)
-- O `Program.cs` j· lÍ um arquivo `.env` na raiz do projeto (sem sobrescrever vari·veis de ambiente existentes). Para usar, crie `.env` com as vari·veis descritas abaixo.
-
-OpÁıes para carregar vari·veis (exemplos):
-
-- Usar `.env` (recomendado)
-  - Coloque `.env` na raiz do projeto (j· incluÌdo no `.gitignore`). Depois apenas rode `dotnet run` ó o `Program.cs` ir· carregar automaticamente.
-
-- PowerShell (sess„o atual)
-```powershell
-$env:DB_HOST = "localhost"
-$env:DB_NAME = "minhaapidb"
-$env:DB_USER = "root"
-$env:DB_PASS = "Dev@2025#MySQL"
-dotnet run
-```
-
-- Bash / Linux / macOS (sess„o atual)
-```bash
-export DB_HOST=localhost
-export DB_NAME=minhaapidb
-export DB_USER=root
-export DB_PASS='Dev@2025#MySQL'
-dotnet run
-```
-
-- Carregar `.env` em Bash
-```bash
-set -a
-source .env
-set +a
-dotnet run
-```
-
-- VSCode (launch.json) ó exemplo de configuraÁ„o de depuraÁ„o
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": ".NET Core Launch (web)",
-      "type": "coreclr",
-      "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/bin/Debug/net8.0/MinhaApi.dll",
-      "args": [],
-      "envFile": "${workspaceFolder}/.env",
-      "cwd": "${workspaceFolder}",
-      "stopAtEntry": false
-    }
-  ]
-}
-```
-
-Rotas disponÌveis
-- Usuarios
-  - GET  /api/usuarios          ó lista usu·rios (n„o deletados)
-  - GET  /api/usuarios/{id}     ó obter usu·rio por id
-  - POST /api/usuarios          ó criar usu·rio
-  - PUT  /api/usuarios          ó atualizar usu·rio
-  - DELETE /api/usuarios/{id}   ó soft delete (IsDeleted = true)
-
-- Servicos
-  - GET  /api/servicos          ó lista serviÁos (n„o deletados)
-  - GET  /api/servicos/{id}     ó obter serviÁo por id
-  - POST /api/servicos          ó criar serviÁo
-  - PUT  /api/servicos          ó atualizar serviÁo
-  - DELETE /api/servicos/{id}   ó soft delete
-
-- Profissionais
-  - GET  /api/profissionais     ó lista profissionais (n„o deletados)
-  - GET  /api/profissionais/{id}ó obter profissional por id
-  - POST /api/profissionais     ó criar profissional
-  - PUT  /api/profissionais     ó atualizar profissional
-  - DELETE /api/profissionais/{id} ó soft delete
-
-- Agendamentos
-  - GET  /api/Agendamentos      ó lista agendamentos
-  - GET  /api/Agendamentos/{id} ó obter agendamento por id
-  - POST /api/Agendamentos      ó criar agendamento
-  - PUT  /api/Agendamentos      ó atualizar agendamento
-  - DELETE /api/Agendamentos/{id} ó remover agendamento
-
-ObservaÁıes importantes
-- IDs: `Usuario.Id` È `Guid` (armazenado como `binary(16)` no MySQL). `Servico.Id` e `Profissional.Id` s„o `int`.
-- Antes de criar um agendamento, crie um usu·rio, serviÁo e profissional e use os IDs retornados (o serviÁo valida FKs antes de inserir).
-- Senhas: atualmente armazenadas em texto. Para produÁ„o, implemente hashing (BCrypt/Argon2) e endpoints de autenticaÁ„o.
-- SQL schema: se precisar recriar o banco, h· um arquivo `sql/schema_mysql.sql` com o DDL usado originalmente.
-
-Arquitetura e estudo
-- Pontos para estudar: ASP.NET Core, EF Core, DI, Repository pattern, DTOs, migrations, testes (xUnit), Docker, JWT.
-
-Suporte
-- Arquivo Postman: `postman/MinhaApi.postman_collection.json`
-- Swagger UI: `https://localhost:{porta}/swagger` (verifique porta apÛs rodar a API)
-
-Boa sorte ao testar ó se precisar de scripts de seed, migraÁıes EF ou docker-compose, eu gero para vocÍ.
-
-
+Projeto desenvolvido para estudo, pr√°tica e constru√ß√£o de portf√≥lio profissional, com foco em APIs REST com C# e .NET e integra√ß√£o com banco de dados relacional.
