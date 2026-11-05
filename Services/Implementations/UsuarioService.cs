@@ -1,4 +1,4 @@
-﻿using MinhaApi.Data;
+using MinhaApi.Data;
 using MinhaApi.DTOs.Usuario;
 using MinhaApi.Models;
 using MinhaApi.Repositories.Interfaces;
@@ -28,11 +28,36 @@ public class UsuarioService : IUsuarioService
             Id = Guid.NewGuid(),
             Nome = dto.Nome,
             Email = dto.Email,
-            Senha = dto.Senha, // TODO: hashing
+            // A senha nunca é armazenada em texto: guardamos apenas o hash BCrypt.
+            // O "salt" é gerado automaticamente e fica embutido no próprio hash,
+            // por isso dois usuários com a mesma senha têm hashes diferentes.
+            Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha),
             IsDeleted = false
         };
 
         _repository.AddAsync(usuario).GetAwaiter().GetResult();
+
+        return new UsuarioResponseDto
+        {
+            Id = usuario.Id,
+            Nome = usuario.Nome,
+            Email = usuario.Email
+        };
+    }
+
+    public async Task<UsuarioResponseDto?> AutenticarAsync(UsuarioLoginDto dto)
+    {
+        var usuario = await _repository.ObterPorEmailAsync(dto.Email);
+
+        // Não é possível comparar senhas diretamente: o hash é diferente a cada
+        // geração. O Verify refaz o hash da senha informada usando o salt que
+        // está dentro do hash salvo e compara os resultados.
+        if (usuario == null || !BCrypt.Net.BCrypt.Verify(dto.Senha, usuario.Senha))
+        {
+            // Mesma resposta para e-mail inexistente e senha errada, para não
+            // revelar quais e-mails estão cadastrados.
+            return null;
+        }
 
         return new UsuarioResponseDto
         {

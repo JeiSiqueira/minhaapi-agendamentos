@@ -1,4 +1,4 @@
-﻿using MinhaApi.DTOs.Usuario;
+using MinhaApi.DTOs.Usuario;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -12,4 +12,8 @@ public interface IUsuarioService
     UsuarioResponseDto? Atualizar(UsuarioUpdateDto dto);
     bool Remover(Guid id);
     IEnumerable<UsuarioResponseDto> Listar();
+
+    // Valida e-mail e senha. Retorna o usuário quando as credenciais
+    // estiverem corretas e null quando não estiverem.
+    Task<UsuarioResponseDto?> AutenticarAsync(UsuarioLoginDto dto);
 }

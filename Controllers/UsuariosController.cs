@@ -22,6 +22,23 @@ public class UsuariosController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
+    /// <summary>
+    /// Valida as credenciais do usuário.
+    /// </summary>
+    /// <returns>200 com os dados do usuário, ou 401 quando as credenciais estiverem incorretas.</returns>
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(UsuarioLoginDto dto)
+    {
+        var usuario = await _service.AutenticarAsync(dto);
+
+        if (usuario == null)
+        {
+            return Unauthorized(new { mensagem = "E-mail ou senha inválidos." });
+        }
+
+        return Ok(usuario);
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
